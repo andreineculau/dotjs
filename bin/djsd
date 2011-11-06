@@ -1,5 +1,6 @@
-#!/usr/bin/env node
+#!/usr/bin/env /usr/local/bin/node
 
+express = require('express');
 var app = express.createServer();
-app.use(express.static(__dirname + '/'));
+app.use(express.static(process.cwd()));
 app.listen(3131);

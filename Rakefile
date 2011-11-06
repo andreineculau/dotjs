@@ -4,6 +4,7 @@ desc "Install dotjs"
 task :install => 'install:all'
 
 DAEMON_INSTALL_DIR = "/usr/local/bin"
+THIS_DIR = File.dirname(__FILE__)
 
 namespace :install do
   task :all => [ :prompt, :daemon, :create_dir, :agent, :chrome, :done ]
@@ -58,7 +59,8 @@ namespace :install do
 
   desc "Install dotjs daemon"
   task :daemon => :install_dir_writeable do
-    cp "bin/djsd", DAEMON_INSTALL_DIR, :verbose => true, :preserve => true
+    #cp "bin/djsd", DAEMON_INSTALL_DIR, :verbose => true, :preserve => true
+    sh "ln -s #{THIS_DIR}/bin/djsd #{DAEMON_INSTALL_DIR}/djsd"
   end
 
   desc "Create ~/.js"
